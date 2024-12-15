@@ -67,7 +67,7 @@
       <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
-            <img src="{{asset('logo/fornecedor-alternativo (1).png')}}" alt="Logo" width="45" height="45" class="d-inline-block align-text-top">
+            <img src="{{asset('logo/risco.png')}}" alt="Logo" width="45" height="45" class="d-inline-block align-text-top">
             <span style="font-weight: bold; color: #3D2DB5;">Controle Total</span>
           </a>
         </div>
