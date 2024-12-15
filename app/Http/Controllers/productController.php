@@ -39,9 +39,7 @@ class productController extends Controller
        'amount'=>$request->amount,
        'user_id'=> $id_user,
     ]);
-
     return redirect()->route('create.product')->with('aviso','produto cadastrado com sucesso');
-
     }
 
 
@@ -83,7 +81,20 @@ class productController extends Controller
 
         return redirect()->route('produto.index')->with('aviso','Venda realizada com sucesso, comissao de: '.$valorComissao);
     }
-}
+    }
+
+
+    function listAll(){
+        $produtos = Product::all();
+        return view('produto.listProducts', compact('produtos'));
+    }
+
+    function delete($id){
+     $produto = Product::find($id);
+     $produto->delete();
+     return redirect()->route('list.product')->with('aviso','Produto deletado com sucesso');
+    }
+
 }
 
    

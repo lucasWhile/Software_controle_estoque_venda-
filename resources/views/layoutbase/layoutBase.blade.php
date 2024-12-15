@@ -53,6 +53,7 @@
 
               @if( Auth::user()->level == 'dono')
               <a class="nav-link" href="{{ route('create.product') }}">Novo Produto</a>
+              <a class="nav-link" href="{{ route('list.product')}}">Listar Produtos </a>
               @endif
 
               @auth

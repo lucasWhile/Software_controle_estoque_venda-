@@ -64,3 +64,8 @@ Route::get('register/sale/{id}',[productController::class,'registerSale'])->name
 Route::get('user/data/',[usuarioController::class,'user_data'])->name('user.myperfil');
 
 Route::get('user/logout/',[usuarioController::class,'logout'])->name('user.logout');
+
+
+Route::get('list/all/',[productController::class,'listAll'])->name('list.product');
+
+Route::get('drop/produtc/{id}',[productController::class,'delete'])->name('drop.product');
