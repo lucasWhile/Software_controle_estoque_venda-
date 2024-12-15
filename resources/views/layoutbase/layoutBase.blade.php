@@ -68,7 +68,7 @@
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
             <img src="{{asset('logo/risco.png')}}" alt="Logo" width="45" height="45" class="d-inline-block align-text-top">
-            <span style="font-weight: bold; color: #3D2DB5;">Controle Total</span>
+            <span style="font-weight: bold; color: #341fce;">Controle Total</span>
           </a>
         </div>
       </nav>
