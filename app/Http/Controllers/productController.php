@@ -95,6 +95,33 @@ class productController extends Controller
      return redirect()->route('list.product')->with('aviso','Produto deletado com sucesso');
     }
 
+    function oneproduct($id) {
+        $produto = Product::find($id);
+        return view('produto.editProduct', compact('produto'));
+        
+    }
+
+
+    function edit(Request $request)  {
+        $product = Product::find($request->id);
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->description = $request->description;
+        $product->amount = $request->amount;
+
+        if ($request->hasFile('image')) {
+            print("batata");
+            $file = $request->file('image');
+            $imagePath = $file->store('images', 'public'); // Salva a nova imagem
+            $product->image = $imagePath; // Atualiza a imagem
+            
+        } 
+        $product->save();
+ 
+        return redirect()->route('search.product',$product->id)->with('aviso','Produto editado com sucesso');
+        
+    }
+
 }
 
    

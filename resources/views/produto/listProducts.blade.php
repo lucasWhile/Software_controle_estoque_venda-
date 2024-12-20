@@ -32,7 +32,7 @@
 
                             <td>{{ $produto->price }}</td>
                             <td>{{ $produto->amount }}</td>
-                            <td> <button type="button" class="btn btn-success">Danger</button></td>
+                            <td> <a href="{{ route('search.product',$produto->id) }}" class="btn btn-success">Danger</a></td>
 
                             <td> <a href="{{ route('drop.product',$produto->id) }}" class="btn btn-danger">Excluir</a></td>
 

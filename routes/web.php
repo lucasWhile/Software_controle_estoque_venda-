@@ -69,3 +69,7 @@ Route::get('user/logout/',[usuarioController::class,'logout'])->name('user.logou
 Route::get('list/all/',[productController::class,'listAll'])->name('list.product');
 
 Route::get('drop/produtc/{id}',[productController::class,'delete'])->name('drop.product');
+
+Route::get('search/product/{id}',[productController::class,'oneproduct'])->name('search.product');
+
+Route::POST('save/edit/product/',[productController::class,'edit'])->name('save.edit.product');
