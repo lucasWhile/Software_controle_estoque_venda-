@@ -1,79 +1,56 @@
 @extends('layoutbase.layoutBase')
-@section('titulo','Listar Usuarios')
+@section('titulo','Listar Usuários')
 @section('conteudo')
 
-
-
 @if(session('aviso'))
-<div class="alert alert-warning">
+<div class="alert alert-warning text-center">
     {{ session('aviso') }} 
 </div>
 @endif
 
+<div class="table-responsive">
+  <table class="table table-hover align-middle text-center">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col">CPF</th>
+          <th scope="col">Cargo Atual</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+         @foreach ( $Users as $user )
 
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">name</th>
-        <th scope="col">CPF</th>
+         @if($user->id != Auth::user()->id)
+         <tr>
+          <td>{{ $user->name }}</td>
+          <td>{{ $user->CPF }}</td>
 
-        <th scope="col">Cargo Atual</th>
-        <th scope="col">Demitir</th>
+          <td>
+              <form action="{{ route('change.level.user') }}" method="get" class="d-flex justify-content-center align-items-center">
+                  @csrf
+                  <select class="form-select form-select-sm w-50 me-2" name="level" aria-label="Alterar Cargo">
+                      <option selected>{{ $user->level }}</option>
+                      <option value="dono">Dono</option>
+                      <option value="funcionario">Funcionário</option>
+                      <option value="estagiario">Estagiário</option>
+                  </select>
 
+                  <input type="hidden" name="id" value="{{ $user->id }}">
 
-      </tr>
-    </thead>
-    <tbody>
-       @foreach ( $Users as $user )
+                  <button type="submit" class="btn btn-success btn-sm">Salvar</button>
+              </form>
+          </td>
 
-       @if($user->id==Auth::user()->id)
+          <td>
+              <a href="{{ route('delete.user', $user->id) }}" class="btn btn-danger btn-sm">Demitir</a>
+          </td>
+        </tr>
+        @endif
 
-       @else
-       <tr>
-        <th scope="row">{{ $user->name }}</th>
-        <td>{{ $user->CPF }}</td>
-      
+         @endforeach
+      </tbody>
+    </table>
+</div>
 
-        <td>
-            <div class="row">
-                <form action="{{ route('change.level.user') }}" method="get">
-                @csrf
-                <div class="col-6">
-                    <select class="form-select form-select-sm" name="level" aria-label="Small select example">
-                        <option selected>{{ $user->level }}</option>
-                        <option value="dono">Dono</option>
-                        <option value="funcionario">Funcionario</option>
-                        <option value="estagiario">Estagiario</option>
-                    </select>            
-                </div>
-
-                <input type="hidden" name="id" value="{{ $user->id }}">
-
-                <div class="col-6">
-                    <button type="submit"  class="btn btn-success">Salvar</button>
-                </div>
-
-                 </form>
-            </div>
-            
-        </td>
-
-        <td>
-        <a> <a type="button" href="{{ route('delete.user',$user->id) }}" class="btn btn-danger">Demitir</a> </a>
-        </td>
-      </tr>
-           
-      @endif
-       @endforeach
-
-   
-   
-    </tbody>
-  </table>
-
-
-
-
-
-    
 @endsection

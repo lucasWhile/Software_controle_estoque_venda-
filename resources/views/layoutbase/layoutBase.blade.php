@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('titulo')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  </head>
-  <body>
-
     <style>
         body {
             margin: 0;
@@ -15,7 +12,8 @@
             flex-direction: column;
             min-height: 100vh;
             font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
         }
         footer {
             background-color: #3D2DB5;
@@ -36,7 +34,19 @@
         footer p {
             margin: 0;
         }
+        .navbar-nav .nav-link {
+            color: #fff;
+            transition: color 0.3s;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #ddd;
+        }
+        .navbar-toggler {
+            border-color: rgba(255, 255, 255, 0.5);
+        }
     </style>
+  </head>
+  <body>
 
     <nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color: #3D2DB5;">
         <div class="container-fluid">
@@ -69,7 +79,7 @@
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
             <img src="{{asset('logo/risco.png')}}" alt="Logo" width="45" height="45" class="d-inline-block align-text-top">
-            <span style="font-weight: bold; color: #341fce;">Controle Total</span>
+            <span style="font-weight: bold; color: #fff;">Controle Total</span>
           </a>
         </div>
       </nav>

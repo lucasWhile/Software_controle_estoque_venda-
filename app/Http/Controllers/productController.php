@@ -79,8 +79,8 @@ class productController extends Controller
                 return redirect()->route('produto.index')->with('aviso','Produto deletado do estoque');
           }
 
-        return redirect()->route('produto.index')->with('aviso','Venda realizada com sucesso, comissao de: '.$valorComissao);
-    }
+          return redirect()->route('produto.index')->with('aviso', 'Venda concluída com sucesso! Você recebeu uma comissão de R$ ' . number_format($valorComissao, 2, ',', '.') . '. Parabéns pelo trabalho!');
+        }
     }
 
 
