@@ -12,8 +12,8 @@
             flex-direction: column;
             min-height: 100vh;
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            color: #fff;
+            background: linear-gradient(135deg, #ffffff, #ffffff);
+            color: #000000;
         }
         footer {
             background-color: #3D2DB5;
@@ -48,7 +48,7 @@
   </head>
   <body>
 
-    <nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color: #3D2DB5;">
+    <nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color: #4331c8;">
         <div class="container-fluid">
           <a class="navbar-brand text-light" href="{{ route('produto.index') }}">Home</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
