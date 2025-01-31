@@ -57,7 +57,7 @@ class productController extends Controller
             $commision->save();
             
 
-        } else {
+        } else { 
            
 
             Commission::create([
