@@ -50,7 +50,7 @@ class productController extends Controller
 
         $produto = Product::find($id);
         $valorComissao=$produto->price*0.05;
-        $usuario = User::find(Auth::user()->id); // Substitua $usuarioId pelo ID do usuário
+        $usuario = User::find(Auth::user()->id);
         if ($usuario && $usuario->commision()->exists()) {
             $commision = $usuario->commision;
             $commision->value_commission += $produto->price*0.05;
@@ -84,6 +84,50 @@ class productController extends Controller
         return redirect()->route('produto.index')->with('aviso','Venda realizada com sucesso, comissao de: '.$valorComissao);
     }
 }
+
+
+function ListProduct(){
+    $produtos = Product::orderBy('created_at', 'desc')->get();
+    
+    return view('produto.listProducts', compact('produtos'));
+}
+
+
+function dropProduct($id)  {
+    $produto = Product::find($id);
+    if($produto) {
+        $produto->delete();
+        return redirect()->route('list.product')->with('aviso','Produto deletado com sucesso');
+    }
+
+    
+}
+
+function editProduct($id)  {
+    $produto = Product::find($id);
+    return view('produto.editProduct', compact('produto'));
+    
+}
+
+function SaveEditProduct($id,Request $request) {
+
+    $image = $request->file('image');
+
+   
+    $path = $image->store('images', 'public');
+
+
+    $produto = Product::find($id);
+    $produto->name = request('name');
+    $produto->price = request('price');
+    $produto->description = request('description');
+    $produto->amount = request('amount');
+    $produto->save();
+
+    return redirect()->route('list.product')->with('aviso','Produto atualizado com sucesso');
+}
+
+
 }
 
    

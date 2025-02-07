@@ -64,3 +64,13 @@ Route::get('register/sale/{id}',[productController::class,'registerSale'])->name
 Route::get('user/data/',[usuarioController::class,'user_data'])->name('user.myperfil');
 
 Route::get('user/logout/',[usuarioController::class,'logout'])->name('user.logout');
+
+
+Route::get('list/product/',[productController::class,'ListProduct'])->name('list.product');
+
+
+Route::get('drop/product/{id}',[productController::class,'dropProduct'])->name('drop.product');
+
+Route::get('edit/product/{id}',[productController::class,'editProduct'])->name('edit.product');
+
+Route::Post('save/edit/product/{id}',[productController::class,'SaveEditProduct'])->name('save.edit.product');
