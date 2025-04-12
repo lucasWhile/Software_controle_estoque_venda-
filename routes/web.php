@@ -53,7 +53,7 @@ Route::get('/new/product', function () {
     return view('produto.formsNewProduct');
 })->name('create.product');
 
-//salvar o produto
+
 
 Route::post('data/new/product',[productController::class,'create'])->name('product.data');
 

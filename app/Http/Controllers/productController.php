@@ -109,22 +109,31 @@ function editProduct($id)  {
     
 }
 
-function SaveEditProduct($id,Request $request) {
-
-    $image = $request->file('image');
-
-   
-    $path = $image->store('images', 'public');
-
-
+function SaveEditProduct($id, Request $request) {
+    // Procurando o produto
     $produto = Product::find($id);
-    $produto->name = request('name');
-    $produto->price = request('price');
-    $produto->description = request('description');
-    $produto->amount = request('amount');
+    
+    // Atualizando os outros campos
+    $produto->name = $request->input('name');
+    $produto->price = $request->input('price');
+    $produto->description = $request->input('description');
+    $produto->amount = $request->input('amount');
+    
+    // Verificando se foi enviada uma nova imagem
+    if ($request->hasFile('image')) {
+        // Armazenando a nova imagem
+        $image = $request->file('image');
+        $path = $image->store('images', 'public');
+        
+        // Atualizando o caminho da imagem no banco de dados
+        $produto->image = $path;
+    }
+
+    // Salvando o produto com as atualizações
     $produto->save();
 
-    return redirect()->route('list.product')->with('aviso','Produto atualizado com sucesso');
+    // Redirecionando para a lista de produtos com mensagem de sucesso
+    return redirect()->route('list.product')->with('aviso', 'Produto atualizado com sucesso');
 }
 
 

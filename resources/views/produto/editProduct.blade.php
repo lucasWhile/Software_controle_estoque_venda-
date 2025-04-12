@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h1>Novo Produto</h1>
+            <h1>Editar o Produto: {{ $produto->name  }}</h1>
             <form method="post" action="{{ route('save.edit.product',$produto->id) }}" enctype="multipart/form-data">
                 @csrf
                 
@@ -16,9 +16,33 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="formFile" class="form-label">Selecione a foto do produto</label>
-                    <input class="form-control" type="file" id="formFile" name="image" required>
+                    <label for="formFile" class="form-label">Selecione a foto do produto (caso deseje atualizá-la)</label>
+                    <input class="form-control" type="file" id="formFile" name="image" onchange="previewImage(event)">
                 </div>
+                
+                <div id="imagePreviewContainer" class="mt-3" style="display: none;">
+                    <label for="imagePreview">Pré-visualização da imagem:</label>
+                    <img id="imagePreview" src="" alt="Pré-visualização da imagem" style="max-width: 200px; max-height: 200px;">
+                </div>
+                
+                <script>
+                    function previewImage(event) {
+                        const file = event.target.files[0];
+                        const reader = new FileReader();
+                        
+                        reader.onload = function(e) {
+                            const image = document.getElementById('imagePreview');
+                            image.src = e.target.result;
+                            document.getElementById('imagePreviewContainer').style.display = 'block';
+                        }
+                
+                        if (file) {
+                            reader.readAsDataURL(file);
+                        }
+                    }
+                </script>
+                
+
 
                 <div class="form-floating mb-3">
                     <input type="number" class="form-control" id="price" placeholder="Valor do produto" value="{{ $produto->price }}" name="price" required>
