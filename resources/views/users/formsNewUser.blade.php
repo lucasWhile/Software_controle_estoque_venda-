@@ -53,6 +53,9 @@
           <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
         </div>
         <div class="mb-3">
+          <input type="tel" class="form-control" name="telefone" id="telefone" placeholder="Telefone" required>
+        </div>
+        <div class="mb-3">
           <label for="level" class="form-label">Nível</label>
           <select class="form-select" name="level" id="level" required>
             <option value="" disabled selected>Selecione um nível</option>

@@ -3,8 +3,11 @@
 
 @section('conteudo')
 <div class="container my-4">
-    <h1 class="text-center">Bem-vindo, {{ Auth::user()->name }}</h1>
-
+    <h1 class="text-center">Bem-vindo 
+        @auth 
+       , {{ Auth::user()->name }}
+        @endAuth
+    </h1>
     @if(session('aviso'))
         <div class="alert alert-warning mt-3">
             {{ session('aviso') }}
@@ -25,8 +28,30 @@
                             </div>
                             <div class="alert alert-info p-2" role="alert">
                                 <strong>Estoque:</strong> {{ $produto->amount }}
+                                @auth
+                                @if($produto->amount <=5 ) 
+
+                                <div class="alert alert-danger mt-3">
+                                   Aviso:Estoque baixo
+                                </div>
+                                
+                                @endif
+                                @endauth
                             </div>
+
+                            @if(Auth::user())
                             <a href="{{ route('register.sale', $produto->id) }}" class="btn btn-primary w-100 mt-2">Registrar Venda</a>
+
+                            @else
+                            <a href="https://wa.me/{{ urlencode($produto->user->telefone) }}?text=Tenho%20interesse%20em%20comprar%20o%20produto%20{{ urlencode($produto->name) }}" class="btn btn-primary w-100 mt-2" target="_blank">
+                                Tenho interesse em comprar
+                            </a>
+                            
+                            
+                            
+                            @endif
+                                  
+         
                         </div>
                     </div>
                 </div>

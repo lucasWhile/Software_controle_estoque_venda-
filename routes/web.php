@@ -20,10 +20,15 @@ Route::get('/create/new/user', function () {
 })->name('create.user');
 
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('users.loginUser');
 })->name('login.user');
 
+
+
+Route::get('/', function () {
+    return redirect()->route('produto.index');
+});
 
 Route::get('/index', function () {
     return view('users.index');

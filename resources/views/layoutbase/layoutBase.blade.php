@@ -46,6 +46,8 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav text-light">
+
+              @auth
               @if( Auth::user()->level == 'dono')
               <a class="nav-link" href="{{ route('create.user') }}">Cadastrar Novo Colaborador</a>
               <a class="nav-link" href="{{ route('list.user') }}">Listar Usuários</a>
@@ -57,10 +59,17 @@
               <a class="nav-link" href="{{ route('create.product') }}">Novo Produto</a>
               @endif
 
-              @auth
+         
                 <a class="nav-link" href="{{ route('user.myperfil') }}">Meu Perfil</a>
                 <a class="nav-link" href="{{ route('user.logout') }}">Sair</a>
               @endauth
+              
+              @if(Auth::user())
+              @else
+              <a class="nav-link" href="{{ route('login.user') }}">Login Vendedor</a>
+
+              @endif
+
             </div>
           </div>
         </div>

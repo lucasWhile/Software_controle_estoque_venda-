@@ -20,6 +20,8 @@ class usuarioController extends Controller
             'password' =>  bcrypt($request->password),
             'CPF' => $request->CPF,
             'level' => $request->level,
+            'telefone'=>$request->telefone,
+      
 
         ]);
 
@@ -87,7 +89,7 @@ class usuarioController extends Controller
 
     public function logout(){
         Auth::logout();
-        return redirect()->route('login.user')->with('aviso','Deslogado com sucesso');
+        return redirect()->route('produto.index')->with('aviso','Deslogado com sucesso');
     }
 
 }
