@@ -14,7 +14,7 @@ use App\Http\Controllers\usuarioController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+//teste
 Route::get('/create/new/user', function () {
     return view('users.formsNewUser');
 })->name('create.user');
